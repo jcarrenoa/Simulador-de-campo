@@ -501,16 +501,21 @@ public class Programa extends javax.swing.JFrame {
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         //jPanel1.repaint();
         Graphics draw = jPanel1.getGraphics();
-        double x = (evt.getX() / (2500 / zoom)), y = -1 * (evt.getY()/ (2500 / zoom) - or) + or;
+        double x = (evt.getX() / (double)(2500 / zoom)), y = (evt.getY()/ (double)(2500 / zoom));
         if (sensor_box.isSelected()) {
             double iv = 0, jv = 0;
             for (int i = 0; i < tope; i++) {
-                campoP aux = new campoP(x, y, (pos[i].x + or), (pos[i].y + or), pos[i].charge, pos[i].positive, or, false);
-                System.out.println(aux.i);
+                System.out.println("x: " + x + "y: " + y);
+                System.out.println("xi: " + (pos[i].y + or) + "yi: " + (pos[i].x + or));
+                campoP aux = new campoP(x, y, (pos[i].x + or), (pos[i].y + or), pos[i].charge, pos[i].positive, or, true);
+                System.out.println(aux.campoe);
                 iv = iv + aux.i;
                 jv = jv + aux.j;
             }
-            draw.drawLine(evt.getX(), evt.getY(), (int)((iv + or) * (2500 / zoom)), (int)((jv + or) * (2500 / zoom)));
+            System.out.println("iv: " + iv + "\njv: " + jv);
+            if (evt.getX() < (int)((iv + or) * (2500 / zoom))) {
+                draw.drawLine(evt.getX(), evt.getY(), (int)((iv + or) * (2500 / zoom)), (int)((jv + or) * (2500 / zoom)));
+            }
         }
     }//GEN-LAST:event_jPanel1MousePressed
 

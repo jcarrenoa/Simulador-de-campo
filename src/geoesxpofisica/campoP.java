@@ -27,23 +27,28 @@ public class campoP {
         }*/
         //unit = new vectorU(i, j);
         campoe = (k * q) / (Math.pow(dist, 2));
-        i = campoe * (xp - xq) / dist;
-        j = campoe * (yp - yq) / dist;
-
-        /*if (camp) {
-            if ((xp - xq) > or) {
-                if ((yp - yq) > or) {
-                    double angulo = Math.atan((yp - yq) / (xp - xq));
+        if (camp) {
+            double angulo = Math.atan((yp - yq) / (xp - xq));
+            if ((xp - xq) != 0) {
+                if ((yp - yq) != 0) {
                     i = campoe * Math.cos(angulo);
                     j = campoe * Math.sin(angulo);
                 } else {
-                    double angulo = Math.atan((yp - yq) / (xp - xq));
-                    i = campoe * Math.cos(angulo);
-                    j = campoe * Math.sin(angulo);
+                    i = campoe;
+                }
+            } else {
+                if ((yp - yq) != 0) {
+                    j = campoe;
+                } else {
+                    i = 0;
+                    j = 0;
                 }
             }
 
-        }*/
+        } else {
+            i = campoe * (xp - xq) / dist;
+            j = campoe * (yp - yq) / dist;
+        }
 
     }
 
