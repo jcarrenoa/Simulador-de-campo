@@ -30,7 +30,7 @@ public class campoP {
         i = campoe * (xp - xq) / dist;
         j = campoe * (yp - yq) / dist;
 
-        if (camp) {
+        /*if (camp) {
             if ((xp - xq) > or) {
                 if ((yp - yq) > or) {
                     double angulo = Math.atan((yp - yq) / (xp - xq));
@@ -43,7 +43,7 @@ public class campoP {
                 }
             }
 
-        }
+        }*/
 
     }
 
