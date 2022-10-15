@@ -29,6 +29,7 @@ public class campoP {
         campoe = (k * q) / (Math.pow(dist, 2));
         if (camp) {
             double angulo = Math.atan((yp - yq) / (xp - xq));
+            System.out.println(angulo);
             if ((xp - xq) != 0) {
                 if ((yp - yq) != 0) {
                     i = campoe * Math.cos(angulo);
