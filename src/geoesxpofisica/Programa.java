@@ -4,6 +4,7 @@
  */
 package geoesxpofisica;
 
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,6 +12,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JScrollBar;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -33,6 +39,14 @@ public class Programa extends javax.swing.JFrame {
     public Programa() {
         initComponents();
         jPSlider.setSize(0, 700);
+        ScrollBarModificado spv = new ScrollBarModificado();
+        spv.setForeground(new Color(84, 132, 144));
+        spv.setOrientation(JScrollBar.VERTICAL);
+        jPlano.setVerticalScrollBar(spv);
+        ScrollBarModificado sph = new ScrollBarModificado();
+        sph.setForeground(new Color(84, 132, 144));
+        sph.setOrientation(JScrollBar.HORIZONTAL);
+        jPlano.setHorizontalScrollBar(sph);
     }
 
     @SuppressWarnings("unchecked")
@@ -505,6 +519,11 @@ public class Programa extends javax.swing.JFrame {
             }
             System.out.println("iv: " + iv + "\njv: " + jv);
             draw.drawLine(evt.getX(), evt.getY(), (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
+            System.out.println("xc: " + (int) ((iv + or + x) * (2500 / zoom)));
+            System.out.println("yc: " + -1 * (int) ((jv - or + y) * (2500 / zoom)));
+            vectorU auxv = new vectorU(iv, jv);
+            double unit = Math.sqrt(Math.pow(auxv.iu, 2) + Math.pow(auxv.ju, 2));
+            //dibujarFlechas(iv, jv, unit, x, y);
         }
     }//GEN-LAST:event_jPanel1MousePressed
 
@@ -630,12 +649,48 @@ public class Programa extends javax.swing.JFrame {
         }
     }
 
+    public void dibujarFlechas(double x, double y, double h, double xi, double yi) {
+        Graphics g = jPanel1.getGraphics();
+        Graphics2D g2d = (Graphics2D) g;
+        double angulo = Math.atan(y / x);
+        double delta = Math.PI / 4;
+        double norma = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+        double k = 1 / h;
+        //double a = x / norma;
+        //double b = y / norma;
+        //double a = Math.sin(angulo) * h;
+        //double b = Math.cos(angulo) * h;
+        double a = Math.sqrt(Math.pow(h, 2) / (1 + Math.pow(Math.tan(angulo), 2)));
+        double b = Math.sqrt(Math.pow(h, 2) - Math.pow(a, 2));
+        //double a = (x / h);
+        //double b = (y / h);
+        double xph = a * Math.cos(delta) + b * Math.sin(delta);
+        double yph = (-1 * (a * Math.sin(delta))) + b * Math.cos(delta);
+        double xpa = a * Math.cos(delta) + (-1 * (b * Math.sin(delta)));
+        double ypa = a * Math.sin(delta) + b * Math.cos(delta);
+        double xf = ((x + or + xi) * (2500 / zoom));
+        double yf = -1 * ((y - or + yi) * (2500 / zoom));
+        //double x1 = (((xph + or + xi) + ((x + or) - (xph + or + xi))) * (2500 / zoom));
+        //double y1 = (-1 * ((yph - or + yi) + (yph - or + yi) + (or + y - yi)) * (2500 / zoom));
+        double x1 = ((xph + or + xi) * (2500 / zoom));
+        double y1 = (-1 * (yph - or + yi) * (2500 / zoom));
+        //g2d.drawLine((int)((x + or + xi) * (2500 / zoom)), -1 * (int)((y - or + yi) * (2500 / zoom)), (int) ((xph + or + xi) * (2500 / zoom)), -1  * (int) ((yph - or + yi) * (2500 / zoom)));
+        g2d.drawLine((int)((x + or + xi) * (2500 / zoom)), -1 * (int)((y - or + yi) * (2500 / zoom)), (int) ((xpa + or + xi) * (2500 / zoom)), -1  * (int) ((ypa - or + yi) * (2500 / zoom)));
+        //g2d.drawLine((int) xf, (int) yf, (int) ((xpa + or + xi) * (2500 / zoom)), -1  * (int) ((ypa - or + yi) * (2500 / zoom)));
+        g2d.drawLine((int) xf, (int) yf, (int) (x1) , (int) (y1));
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(new WindowsLookAndFeel());
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(Programa.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new Programa().setVisible(true);
             }
         });
