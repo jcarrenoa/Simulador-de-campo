@@ -278,12 +278,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jPlano.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jPlano.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPlanoAncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPlanoAncestorMoved(evt);
             }
         });
 
@@ -291,12 +291,12 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(2500, 2500));
         jPanel1.setPreferredSize(new java.awt.Dimension(2500, 2500));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorMoved(evt);
             }
         });
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -723,6 +723,11 @@ public class Programa extends javax.swing.JFrame {
 
     private void OnOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnOffActionPerformed
         Sensoronoff = !Sensoronoff;
+        if (Sensoronoff){
+            OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-13.png")));
+        }else{
+            OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-12.png")));
+        }
     }//GEN-LAST:event_OnOffActionPerformed
 
     public void dibujarC(int x, int y, int i) {
