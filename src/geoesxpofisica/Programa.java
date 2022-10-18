@@ -11,9 +11,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -44,6 +41,7 @@ public class Programa extends javax.swing.JFrame {
             super.paintComponent(grafico);
         }
     }
+    int pospx = 0, pospy = 0;
     boolean resize = false;
     boolean rewrite = true;
     int xm, ym;
@@ -62,7 +60,6 @@ public class Programa extends javax.swing.JFrame {
         setIconImage(getIconImage());
         Imagenes Imagenes = new Imagenes();
         PanelControl.add(Imagenes);
-        PanelControl.repaint();
         jPSlider.setSize(0, 700);
         ScrollBarModificado spv = new ScrollBarModificado();
         spv.setForeground(new Color(84, 132, 144));
@@ -72,6 +69,7 @@ public class Programa extends javax.swing.JFrame {
         sph.setForeground(new Color(84, 132, 144));
         sph.setOrientation(JScrollBar.HORIZONTAL);
         jPlano.setHorizontalScrollBar(sph);
+        this.setLocation(60, 30);
     }
 
     @SuppressWarnings("unchecked")
@@ -280,12 +278,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jPlano.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jPlano.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPlanoAncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPlanoAncestorMoved(evt);
             }
         });
 
@@ -293,12 +291,12 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(2500, 2500));
         jPanel1.setPreferredSize(new java.awt.Dimension(2500, 2500));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorMoved(evt);
             }
         });
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -476,6 +474,7 @@ public class Programa extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jPanel1.repaint();
         zoom = Integer.parseInt(jTextField1.getText());
+        jTextField1.setText("");
         or = zoom / 2;
         timer.schedule(new RepeatedTask(), 8);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -490,6 +489,21 @@ public class Programa extends javax.swing.JFrame {
             }
             if (tope > 0) {
                 dibujarCampo();
+            }
+        }
+    }
+    
+    public class RepeatedTaskSensor extends TimerTask {
+
+        @Override
+        public void run() {
+            dibujarL(2500, 2500, 0, zoom);
+            for (int i = 0; i < tope; i++) {
+                dibujarC(or + pos[i].x, or + pos[i].y, i);
+            }
+            if (tope > 0) {
+                dibujarCampo();
+                dibujarSensor();
             }
         }
     }
@@ -527,12 +541,17 @@ public class Programa extends javax.swing.JFrame {
         pos[tope] = q;
         tope++;
         jPanel1.repaint();
+        x_text.setText("");
+        y_text.setText("");
+        signo_box.setSelectedIndex(0);
+        carga.setText("");
         timer.schedule(new RepeatedTask(), 5);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         radio = Integer.parseInt(radio_text.getText());
         jPanel1.repaint();
+        radio_text.setText("");
         timer.schedule(new RepeatedTask(), 5);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -600,15 +619,19 @@ public class Programa extends javax.swing.JFrame {
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         //jPanel1.repaint();
-        Graphics draw = jPanel1.getGraphics();
-        double x = (evt.getX() / (float) (2500 / zoom)) - (float) or, y = -1 * ((evt.getY() / (float) (2500 / zoom)) - (float) or);
-        dibujarSensor(x, y, evt.getX(), evt.getY());
+        pospx = evt.getX();
+        pospy = evt.getY();
+        if (tope > 0) {
+            jPanel1.repaint();
+            timer.schedule(new RepeatedTaskSensor(), 3);
+        }
         //dibujarFlechas(iv, jv, unit, x, y);
 
     }//GEN-LAST:event_jPanel1MousePressed
 
-    public void dibujarSensor(double x, double y, int posx, int posy) {
+    public void dibujarSensor() {
         if (Sensoronoff) {
+            double x = (pospx / (float) (2500 / zoom)) - (float) or, y = -1 * ((pospy / (float) (2500 / zoom)) - (float) or);
             Graphics draw = jPanel1.getGraphics();
             double iv = 0, jv = 0;
             for (int i = 0; i < tope; i++) {
@@ -616,7 +639,7 @@ public class Programa extends javax.swing.JFrame {
                 iv = iv + aux.i;
                 jv = jv + aux.j;
             }
-            draw.drawLine(posx, posy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
+            draw.drawLine(pospx, pospy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
             vectorU auxv = new vectorU(iv, jv);
             double unit = Math.sqrt(Math.pow(auxv.iu, 2) + Math.pow(auxv.ju, 2));
             //dibujarFlechas(iv, jv, unit, x, y);
