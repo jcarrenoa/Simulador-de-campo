@@ -69,7 +69,6 @@ public class Programa extends javax.swing.JFrame {
         sph.setForeground(new Color(84, 132, 144));
         sph.setOrientation(JScrollBar.HORIZONTAL);
         jPlano.setHorizontalScrollBar(sph);
-        this.setLocation(60, 30);
     }
 
     @SuppressWarnings("unchecked")
@@ -86,9 +85,9 @@ public class Programa extends javax.swing.JFrame {
         campo_label = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        upPanel = new javax.swing.JPanel();
-        exit = new javax.swing.JLabel();
         sliderOut = new javax.swing.JLabel();
+        ExitBtt = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPlano = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         PanelControl = new javax.swing.JPanel();
@@ -130,7 +129,7 @@ public class Programa extends javax.swing.JFrame {
 
         sliderIn.setForeground(new java.awt.Color(255, 255, 255));
         sliderIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sliderIn.setText("---");
+        sliderIn.setText("•••");
         sliderIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sliderInMouseClicked(evt);
@@ -215,40 +214,6 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
-        upPanel.setBackground(new java.awt.Color(57, 91, 100));
-        upPanel.setPreferredSize(new java.awt.Dimension(35, 35));
-
-        exit.setForeground(new java.awt.Color(255, 255, 255));
-        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exit.setText("X");
-        exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exit.setName(""); // NOI18N
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                exitMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout upPanelLayout = new javax.swing.GroupLayout(upPanel);
-        upPanel.setLayout(upPanelLayout);
-        upPanelLayout.setHorizontalGroup(
-            upPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-        upPanelLayout.setVerticalGroup(
-            upPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
         sliderOut.setForeground(new java.awt.Color(255, 255, 255));
         sliderOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sliderOut.setText("---");
@@ -258,19 +223,38 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
+        ExitBtt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/baibai-14.png"))); // NOI18N
+        ExitBtt.setBorderPainted(false);
+        ExitBtt.setContentAreaFilled(false);
+        ExitBtt.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/baibai-15.png"))); // NOI18N
+        ExitBtt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitBttActionPerformed(evt);
+            }
+        });
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WATAWATAFaA-17.png"))); // NOI18N
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/WATAWATAFaA-18.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(sliderOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1180, Short.MAX_VALUE)
-                .addComponent(upPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1139, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ExitBtt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(upPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(sliderOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(ExitBtt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(sliderOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, -1));
@@ -341,6 +325,12 @@ public class Programa extends javax.swing.JFrame {
 
         PanelControl.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exp-06.png"))); // NOI18N
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
@@ -365,6 +355,24 @@ public class Programa extends javax.swing.JFrame {
 
         signo_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Negativa", "Positiva" }));
 
+        carga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cargaKeyTyped(evt);
+            }
+        });
+
+        x_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x_textKeyTyped(evt);
+            }
+        });
+
+        y_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                y_textKeyTyped(evt);
+            }
+        });
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Zoom-03.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -373,6 +381,12 @@ public class Programa extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        radio_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                radio_textKeyTyped(evt);
             }
         });
 
@@ -463,7 +477,7 @@ public class Programa extends javax.swing.JFrame {
         if (resize == false) {
             dibujarL(2500, 2500, 0, zoom);
             for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i);
+                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
             }
             if (tope > 0) {
                 dibujarCampo();
@@ -476,7 +490,7 @@ public class Programa extends javax.swing.JFrame {
         zoom = Integer.parseInt(jTextField1.getText());
         jTextField1.setText("");
         or = zoom / 2;
-        timer.schedule(new RepeatedTask(), 8);
+        timer.schedule(new RepeatedTask(), 20);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public class RepeatedTask extends TimerTask {
@@ -485,21 +499,21 @@ public class Programa extends javax.swing.JFrame {
         public void run() {
             dibujarL(2500, 2500, 0, zoom);
             for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i);
+                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
             }
             if (tope > 0) {
                 dibujarCampo();
             }
         }
     }
-    
+
     public class RepeatedTaskSensor extends TimerTask {
 
         @Override
         public void run() {
             dibujarL(2500, 2500, 0, zoom);
             for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i);
+                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
             }
             if (tope > 0) {
                 dibujarCampo();
@@ -529,7 +543,7 @@ public class Programa extends javax.swing.JFrame {
         @Override
         public void run() {
             resize = !resize;
-            timer.schedule(new RepeatedTask(), 1);
+            timer.schedule(new RepeatedTask(), 2);
         }
     }
 
@@ -545,14 +559,14 @@ public class Programa extends javax.swing.JFrame {
         y_text.setText("");
         signo_box.setSelectedIndex(0);
         carga.setText("");
-        timer.schedule(new RepeatedTask(), 5);
+        timer.schedule(new RepeatedTask(), 20);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         radio = Integer.parseInt(radio_text.getText());
         jPanel1.repaint();
         radio_text.setText("");
-        timer.schedule(new RepeatedTask(), 5);
+        timer.schedule(new RepeatedTask(), 20);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
@@ -569,22 +583,6 @@ public class Programa extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xm, y - ym);
     }//GEN-LAST:event_jPanel2MouseDragged
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_exitMouseClicked
-
-    private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
-        upPanel.setBackground(new Color(36, 71, 71));
-    }//GEN-LAST:event_exitMouseEntered
-
-    private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
-        upPanel.setBackground(new Color(57, 91, 100));
-    }//GEN-LAST:event_exitMouseExited
-
-    private void exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMousePressed
-        upPanel.setBackground(new Color(32, 64, 66));
-    }//GEN-LAST:event_exitMousePressed
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
         if (rewrite) {
@@ -623,7 +621,7 @@ public class Programa extends javax.swing.JFrame {
         pospy = evt.getY();
         if (tope > 0) {
             jPanel1.repaint();
-            timer.schedule(new RepeatedTaskSensor(), 3);
+            timer.schedule(new RepeatedTaskSensor(), 20);
         }
         //dibujarFlechas(iv, jv, unit, x, y);
 
@@ -633,13 +631,15 @@ public class Programa extends javax.swing.JFrame {
         if (Sensoronoff) {
             double x = (pospx / (float) (2500 / zoom)) - (float) or, y = -1 * ((pospy / (float) (2500 / zoom)) - (float) or);
             Graphics draw = jPanel1.getGraphics();
+            Graphics2D d2d = (Graphics2D) draw;
             double iv = 0, jv = 0;
             for (int i = 0; i < tope; i++) {
                 campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
                 iv = iv + aux.i;
                 jv = jv + aux.j;
             }
-            draw.drawLine(pospx, pospy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
+            d2d.setStroke(new BasicStroke(2));
+            d2d.drawLine(pospx, pospy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
             vectorU auxv = new vectorU(iv, jv);
             double unit = Math.sqrt(Math.pow(auxv.iu, 2) + Math.pow(auxv.ju, 2));
             //dibujarFlechas(iv, jv, unit, x, y);
@@ -723,18 +723,67 @@ public class Programa extends javax.swing.JFrame {
 
     private void OnOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnOffActionPerformed
         Sensoronoff = !Sensoronoff;
-        if (Sensoronoff){
+        if (Sensoronoff) {
             OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-13.png")));
-        }else{
+        } else {
             OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-12.png")));
         }
     }//GEN-LAST:event_OnOffActionPerformed
 
-    public void dibujarC(int x, int y, int i) {
+    private void ExitBttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBttActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitBttActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void radio_textKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_radio_textKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_radio_textKeyTyped
+
+    private void x_textKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x_textKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_x_textKeyTyped
+
+    private void y_textKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_y_textKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_y_textKeyTyped
+
+    private void cargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cargaKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_cargaKeyTyped
+
+    public void dibujarC(int x, int y, int i, boolean carga) {
         Graphics draw = jPanel1.getGraphics();
+        if (!carga) {
+            draw.setColor(Color.BLUE);
+        } else {
+            draw.setColor(Color.RED);
+        }
+        draw.fillOval(((2500 / zoom) * x) - ((2500 / zoom) / 2) * radio, ((2500 / zoom) * y) - ((2500 / zoom) / 2) * radio, (2500 / zoom) * radio, (2500 / zoom) * radio);
         draw.drawOval(((2500 / zoom) * x) - ((2500 / zoom) / 2) * radio, ((2500 / zoom) * y) - ((2500 / zoom) / 2) * radio, (2500 / zoom) * radio, (2500 / zoom) * radio);
         draw.setFont(new Font("Tahoma", Font.ITALIC, 20));
-        draw.setColor(Color.BLUE);
         draw.drawString("Q" + String.valueOf(i), ((2500 / zoom) * x) + (2500 / zoom) / 2 * radio, ((2500 / zoom) * y) - (2500 / zoom) / 2 * radio);
     }
 
@@ -759,6 +808,7 @@ public class Programa extends javax.swing.JFrame {
 
     public void dibujarCampo() {
         Graphics draw = jPanel1.getGraphics();
+        Graphics2D d2d = (Graphics2D) draw;
         for (int i = 1; i <= zoom; i++) {
             for (int j = 1; j <= zoom; j++) {
                 double it = 0, jt = 0;
@@ -771,8 +821,9 @@ public class Programa extends javax.swing.JFrame {
                 }
                 vectorU vc = new vectorU(it, jt);
                 int posi = i * (2500 / zoom), posj = j * (2500 / zoom);
-                draw.setColor(new Color(131, 0, 234));
-                draw.drawLine(posi, posj, (int) ((vc.iu) * (2500 / zoom)) + posi, (int) ((vc.ju * (2500 / zoom)) + posj));
+                d2d.setStroke(new BasicStroke(2));
+                d2d.setColor(new Color(131, 0, 234));
+                d2d.drawLine(posi, posj, (int) ((vc.iu) * (2500 / zoom)) + posi, (int) ((vc.ju * (2500 / zoom)) + posj));
             }
         }
     }
@@ -825,16 +876,17 @@ public class Programa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ExitBtt;
     private javax.swing.JButton OnOff;
     private javax.swing.JPanel PanelControl;
     private javax.swing.JLabel X_label;
     private javax.swing.JLabel Y_label;
     private javax.swing.JLabel campo_label;
     private javax.swing.JTextField carga;
-    private javax.swing.JLabel exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
@@ -848,7 +900,6 @@ public class Programa extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> signo_box;
     private javax.swing.JLabel sliderIn;
     private javax.swing.JLabel sliderOut;
-    private javax.swing.JPanel upPanel;
     private javax.swing.JTextField x_text;
     private javax.swing.JTextField y_text;
     // End of variables declaration//GEN-END:variables
