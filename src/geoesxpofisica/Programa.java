@@ -7,13 +7,18 @@ package geoesxpofisica;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -24,6 +29,21 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Programa extends javax.swing.JFrame {
 
+    public class Imagenes extends javax.swing.JPanel {
+
+        public Imagenes() {
+            this.setSize(1070, 90);
+        }
+
+        @Override
+        public void paint(Graphics grafico) {
+            Dimension height = getSize();
+            ImageIcon Img = new ImageIcon(getClass().getResource("/Images/Panel-14.png"));
+            grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
+            setOpaque(false);
+            super.paintComponent(grafico);
+        }
+    }
     boolean resize = false;
     boolean rewrite = true;
     int xm, ym;
@@ -35,9 +55,14 @@ public class Programa extends javax.swing.JFrame {
     int tope = 0;
     int sliderX = 180;
     Timer timer = new Timer();
+    boolean Sensoronoff = false;
 
     public Programa() {
         initComponents();
+        setIconImage(getIconImage());
+        Imagenes Imagenes = new Imagenes();
+        PanelControl.add(Imagenes);
+        PanelControl.repaint();
         jPSlider.setSize(0, 700);
         ScrollBarModificado spv = new ScrollBarModificado();
         spv.setForeground(new Color(84, 132, 144));
@@ -61,14 +86,6 @@ public class Programa extends javax.swing.JFrame {
         Y_label = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         campo_label = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        x_text = new javax.swing.JTextField();
-        y_text = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        carga = new javax.swing.JTextField();
-        radio_text = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         upPanel = new javax.swing.JPanel();
@@ -76,16 +93,24 @@ public class Programa extends javax.swing.JFrame {
         sliderOut = new javax.swing.JLabel();
         jPlano = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        PanelControl = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         signo_box = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        sensor_box = new javax.swing.JCheckBox();
+        carga = new javax.swing.JTextField();
+        x_text = new javax.swing.JTextField();
+        y_text = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        radio_text = new javax.swing.JTextField();
+        OnOff = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(1250, 700));
+        setMinimumSize(new java.awt.Dimension(1250, 700));
         setUndecorated(true);
+        setResizable(false);
         addWindowStateListener(new java.awt.event.WindowStateListener() {
             public void windowStateChanged(java.awt.event.WindowEvent evt) {
                 formWindowStateChanged(evt);
@@ -173,36 +198,7 @@ public class Programa extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 700));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 630, 112, -1));
-
-        jButton1.setText("Zoom");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 630, 80, -1));
-        getContentPane().add(x_text, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 70, -1));
-        getContentPane().add(y_text, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 660, 70, -1));
-
-        jButton2.setText("Add");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 630, -1, 50));
-        getContentPane().add(carga, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 660, 80, -1));
-        getContentPane().add(radio_text, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 660, 110, -1));
-
-        jButton3.setText("Resize");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 660, 80, -1));
+        getContentPane().add(jPSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 705));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -284,12 +280,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jPlano.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jPlano.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPlanoAncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPlanoAncestorMoved(evt);
             }
         });
 
@@ -297,12 +293,12 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(2500, 2500));
         jPanel1.setPreferredSize(new java.awt.Dimension(2500, 2500));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorMoved(evt);
             }
         });
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -343,25 +339,112 @@ public class Programa extends javax.swing.JFrame {
 
         jPanel3.add(jPlano, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 34, 1070, 580));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 620));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 610));
+
+        PanelControl.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exp-06.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exp-08.png"))); // NOI18N
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exp-07.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Add-09.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Add-11.png"))); // NOI18N
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Add-10.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         signo_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Negativa", "Positiva" }));
-        getContentPane().add(signo_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 630, 80, -1));
 
-        jLabel3.setText("X");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 630, 20, -1));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Zoom-03.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Zoom-05.png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Zoom-04.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Y");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 660, 20, -1));
+        OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-12.png"))); // NOI18N
+        OnOff.setBorderPainted(false);
+        OnOff.setContentAreaFilled(false);
+        OnOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OnOffActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Signo");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 630, -1, -1));
+        javax.swing.GroupLayout PanelControlLayout = new javax.swing.GroupLayout(PanelControl);
+        PanelControl.setLayout(PanelControlLayout);
+        PanelControlLayout.setHorizontalGroup(
+            PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(radio_text, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(x_text, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(y_text, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(signo_box, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(OnOff, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+        PanelControlLayout.setVerticalGroup(
+            PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelControlLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radio_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelControlLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelControlLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(x_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(y_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(signo_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(PanelControlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OnOff, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
-        jLabel6.setText("Valor");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 660, -1, -1));
-
-        sensor_box.setText("Sensor");
-        getContentPane().add(sensor_box, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 630, -1, -1));
+        getContentPane().add(PanelControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 615, 1070, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -394,7 +477,7 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.repaint();
         zoom = Integer.parseInt(jTextField1.getText());
         or = zoom / 2;
-        timer.schedule(new RepeatedTask(), 5);
+        timer.schedule(new RepeatedTask(), 8);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public class RepeatedTask extends TimerTask {
@@ -404,6 +487,9 @@ public class Programa extends javax.swing.JFrame {
             dibujarL(2500, 2500, 0, zoom);
             for (int i = 0; i < tope; i++) {
                 dibujarC(or + pos[i].x, or + pos[i].y, i);
+            }
+            if (tope > 0) {
+                dibujarCampo();
             }
         }
     }
@@ -440,9 +526,8 @@ public class Programa extends javax.swing.JFrame {
         carga q = new carga(x, -1 * y, charge, signo_box.getItemAt(signo_box.getSelectedIndex()));
         pos[tope] = q;
         tope++;
-        for (int i = 0; i < tope; i++) {
-            dibujarC(or + pos[i].x, or + pos[i].y, i);
-        }
+        jPanel1.repaint();
+        timer.schedule(new RepeatedTask(), 5);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -500,36 +585,47 @@ public class Programa extends javax.swing.JFrame {
         double campop = 0;
         for (int i = 0; i < tope; i++) {
             campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
-            campop = campop + aux.campoe;
+            if (x < pos[i].x && y < -1 * pos[i].y) {
+                campop = campop - aux.campoe;
+            } else {
+                campop = campop + aux.campoe;
+            }
         }
-        return campop;
+        if (campop < 0) {
+            return -1 * campop;
+        } else {
+            return campop;
+        }
     }
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         //jPanel1.repaint();
         Graphics draw = jPanel1.getGraphics();
         double x = (evt.getX() / (float) (2500 / zoom)) - (float) or, y = -1 * ((evt.getY() / (float) (2500 / zoom)) - (float) or);
-        if (sensor_box.isSelected()) {
+        dibujarSensor(x, y, evt.getX(), evt.getY());
+        //dibujarFlechas(iv, jv, unit, x, y);
+
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    public void dibujarSensor(double x, double y, int posx, int posy) {
+        if (Sensoronoff) {
+            Graphics draw = jPanel1.getGraphics();
             double iv = 0, jv = 0;
             for (int i = 0; i < tope; i++) {
                 campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
-                System.out.println(aux.campoe);
                 iv = iv + aux.i;
                 jv = jv + aux.j;
             }
-            System.out.println("iv: " + iv + "\njv: " + jv);
-            draw.drawLine(evt.getX(), evt.getY(), (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
-            System.out.println("xc: " + (int) ((iv + or + x) * (2500 / zoom)));
-            System.out.println("yc: " + -1 * (int) ((jv - or + y) * (2500 / zoom)));
+            draw.drawLine(posx, posy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
             vectorU auxv = new vectorU(iv, jv);
             double unit = Math.sqrt(Math.pow(auxv.iu, 2) + Math.pow(auxv.ju, 2));
             //dibujarFlechas(iv, jv, unit, x, y);
         }
-    }//GEN-LAST:event_jPanel1MousePressed
+    }
 
     private void sliderInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderInMouseClicked
         if (sliderX == 180) {
-            jPSlider.setSize(180, 700);
+            //jPSlider.setSize(180, 700);
             resize = true;
             rewrite = !rewrite;
             Thread th = new Thread() {
@@ -540,7 +636,7 @@ public class Programa extends javax.swing.JFrame {
                         jPlano.updateUI();
                         for (int i = 180; i >= 0; i--) {
                             Thread.sleep(1);
-                            jPSlider.setSize(i, 700);
+                            jPSlider.setSize(i, 705);
                             jPlano.setLocation(i, 34);
                         }
                     } catch (InterruptedException e) {
@@ -560,7 +656,7 @@ public class Programa extends javax.swing.JFrame {
 
     private void sliderOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderOutMouseClicked
         if (sliderX == 0) {
-            jPSlider.setSize(0, 700);
+            //jPSlider.setSize(0, 700);
             resize = true;
             Thread th = new Thread() {
                 @Override
@@ -569,7 +665,7 @@ public class Programa extends javax.swing.JFrame {
                         for (int i = 0; i <= 180; i++) {
                             Thread.sleep(1);
                             jPlano.repaint();
-                            jPSlider.setSize(i, 700);
+                            jPSlider.setSize(i, 705);
                             jPlano.setLocation(i, 34);
                         }
                         jPlano.setSize(jPlano.getWidth() - 180, 580);
@@ -601,6 +697,10 @@ public class Programa extends javax.swing.JFrame {
             campo_label.setText("Intensidad: ---");
         }
     }//GEN-LAST:event_jPanel1MouseExited
+
+    private void OnOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnOffActionPerformed
+        Sensoronoff = !Sensoronoff;
+    }//GEN-LAST:event_OnOffActionPerformed
 
     public void dibujarC(int x, int y, int i) {
         Graphics draw = jPanel1.getGraphics();
@@ -675,9 +775,9 @@ public class Programa extends javax.swing.JFrame {
         double x1 = ((xph + or + xi) * (2500 / zoom));
         double y1 = (-1 * (yph - or + yi) * (2500 / zoom));
         //g2d.drawLine((int)((x + or + xi) * (2500 / zoom)), -1 * (int)((y - or + yi) * (2500 / zoom)), (int) ((xph + or + xi) * (2500 / zoom)), -1  * (int) ((yph - or + yi) * (2500 / zoom)));
-        g2d.drawLine((int)((x + or + xi) * (2500 / zoom)), -1 * (int)((y - or + yi) * (2500 / zoom)), (int) ((xpa + or + xi) * (2500 / zoom)), -1  * (int) ((ypa - or + yi) * (2500 / zoom)));
+        g2d.drawLine((int) ((x + or + xi) * (2500 / zoom)), -1 * (int) ((y - or + yi) * (2500 / zoom)), (int) ((xpa + or + xi) * (2500 / zoom)), -1 * (int) ((ypa - or + yi) * (2500 / zoom)));
         //g2d.drawLine((int) xf, (int) yf, (int) ((xpa + or + xi) * (2500 / zoom)), -1  * (int) ((ypa - or + yi) * (2500 / zoom)));
-        g2d.drawLine((int) xf, (int) yf, (int) (x1) , (int) (y1));
+        g2d.drawLine((int) xf, (int) yf, (int) (x1), (int) (y1));
     }
 
     /**
@@ -697,6 +797,8 @@ public class Programa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton OnOff;
+    private javax.swing.JPanel PanelControl;
     private javax.swing.JLabel X_label;
     private javax.swing.JLabel Y_label;
     private javax.swing.JLabel campo_label;
@@ -707,10 +809,6 @@ public class Programa extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPSlider;
     private javax.swing.JPanel jPanel1;
@@ -719,7 +817,6 @@ public class Programa extends javax.swing.JFrame {
     private javax.swing.JScrollPane jPlano;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField radio_text;
-    private javax.swing.JCheckBox sensor_box;
     private javax.swing.JComboBox<String> signo_box;
     private javax.swing.JLabel sliderIn;
     private javax.swing.JLabel sliderOut;
