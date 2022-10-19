@@ -21,13 +21,13 @@ public class Programa extends javax.swing.JFrame {
     public class Imagenes extends javax.swing.JPanel {
 
         public Imagenes() {
-            this.setSize(1070, 90);
+            this.setSize(1250, 90);
         }
 
         @Override
         public void paint(Graphics grafico) {
             Dimension height = getSize();
-            ImageIcon Img = new ImageIcon(getClass().getResource("/Images/Panel-14.png"));
+            ImageIcon Img = new ImageIcon(getClass().getResource("/Images/Panel-02.png"));
             grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
             setOpaque(false);
             super.paintComponent(grafico);
@@ -79,9 +79,9 @@ public class Programa extends javax.swing.JFrame {
         campo_label = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        upPanel = new javax.swing.JPanel();
-        exit = new javax.swing.JLabel();
         sliderOut = new javax.swing.JLabel();
+        Exit = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPlano = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         PanelControl = new javax.swing.JPanel();
@@ -123,7 +123,7 @@ public class Programa extends javax.swing.JFrame {
 
         sliderIn.setForeground(new java.awt.Color(255, 255, 255));
         sliderIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sliderIn.setText("---");
+        sliderIn.setText("•••");
         sliderIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sliderInMouseClicked(evt);
@@ -208,40 +208,6 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
-        upPanel.setBackground(new java.awt.Color(57, 91, 100));
-        upPanel.setPreferredSize(new java.awt.Dimension(35, 35));
-
-        exit.setForeground(new java.awt.Color(255, 255, 255));
-        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exit.setText("X");
-        exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exit.setName(""); // NOI18N
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                exitMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout upPanelLayout = new javax.swing.GroupLayout(upPanel);
-        upPanel.setLayout(upPanelLayout);
-        upPanelLayout.setHorizontalGroup(
-            upPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-        upPanelLayout.setVerticalGroup(
-            upPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
         sliderOut.setForeground(new java.awt.Color(255, 255, 255));
         sliderOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sliderOut.setText("---");
@@ -251,19 +217,38 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
+        Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BaiBai-14.png"))); // NOI18N
+        Exit.setBorderPainted(false);
+        Exit.setContentAreaFilled(false);
+        Exit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BaiBai-15.png"))); // NOI18N
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Watafa-16.png"))); // NOI18N
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Watafa-17.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(sliderOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1180, Short.MAX_VALUE)
-                .addComponent(upPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1139, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(upPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(sliderOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(sliderOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, -1));
@@ -271,12 +256,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jPlano.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jPlano.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPlanoAncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPlanoAncestorMoved(evt);
             }
         });
 
@@ -284,12 +269,12 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(2500, 2500));
         jPanel1.setPreferredSize(new java.awt.Dimension(2500, 2500));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorMoved(evt);
             }
         });
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -389,7 +374,7 @@ public class Programa extends javax.swing.JFrame {
         PanelControlLayout.setHorizontalGroup(
             PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelControlLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(191, 191, 191)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,43 +390,46 @@ public class Programa extends javax.swing.JFrame {
                 .addComponent(signo_box, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(OnOff, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(19, 19, 19)
+                .addComponent(OnOff, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PanelControlLayout.setVerticalGroup(
             PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelControlLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radio_text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
             .addGroup(PanelControlLayout.createSequentialGroup()
-                .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelControlLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelControlLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(x_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(y_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(signo_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(PanelControlLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(PanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OnOff, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(radio_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(x_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(y_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(signo_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PanelControlLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(OnOff, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(PanelControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 615, 1070, 90));
+        getContentPane().add(PanelControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, 615, 1250, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -568,22 +556,6 @@ public class Programa extends javax.swing.JFrame {
         int y = evt.getYOnScreen();
         this.setLocation(x - xm, y - ym);
     }//GEN-LAST:event_jPanel2MouseDragged
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_exitMouseClicked
-
-    private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
-        upPanel.setBackground(new Color(36, 71, 71));
-    }//GEN-LAST:event_exitMouseEntered
-
-    private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
-        upPanel.setBackground(new Color(57, 91, 100));
-    }//GEN-LAST:event_exitMouseExited
-
-    private void exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMousePressed
-        upPanel.setBackground(new Color(32, 64, 66));
-    }//GEN-LAST:event_exitMousePressed
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
         if (rewrite) {
@@ -737,6 +709,10 @@ public class Programa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_radio_textKeyTyped
 
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
+
     public void dibujarC(int x, int y, int i) {
         Graphics draw = jPanel1.getGraphics();
         draw.drawOval(((2500 / zoom) * x) - ((2500 / zoom) / 2) * radio, ((2500 / zoom) * y) - ((2500 / zoom) / 2) * radio, (2500 / zoom) * radio, (2500 / zoom) * radio);
@@ -832,16 +808,17 @@ public class Programa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Exit;
     private javax.swing.JButton OnOff;
     private javax.swing.JPanel PanelControl;
     private javax.swing.JLabel X_label;
     private javax.swing.JLabel Y_label;
     private javax.swing.JLabel campo_label;
     private javax.swing.JTextField carga;
-    private javax.swing.JLabel exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
@@ -855,7 +832,6 @@ public class Programa extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> signo_box;
     private javax.swing.JLabel sliderIn;
     private javax.swing.JLabel sliderOut;
-    private javax.swing.JPanel upPanel;
     private javax.swing.JTextField x_text;
     private javax.swing.JTextField y_text;
     // End of variables declaration//GEN-END:variables
