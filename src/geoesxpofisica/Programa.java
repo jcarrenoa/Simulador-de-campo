@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package geoesxpofisica;
 
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
@@ -20,10 +16,6 @@ import javax.swing.JScrollBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author aaron
- */
 public class Programa extends javax.swing.JFrame {
 
     public class Imagenes extends javax.swing.JPanel {
@@ -41,6 +33,7 @@ public class Programa extends javax.swing.JFrame {
             super.paintComponent(grafico);
         }
     }
+    
     int pospx = 0, pospy = 0;
     boolean resize = false;
     boolean rewrite = true;
@@ -278,12 +271,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jPlano.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jPlano.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPlanoAncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPlanoAncestorMoved(evt);
             }
         });
 
@@ -291,12 +284,12 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(2500, 2500));
         jPanel1.setPreferredSize(new java.awt.Dimension(2500, 2500));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorMoved(evt);
             }
         });
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -373,6 +366,12 @@ public class Programa extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        radio_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                radio_textKeyTyped(evt);
             }
         });
 
@@ -729,6 +728,14 @@ public class Programa extends javax.swing.JFrame {
             OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-12.png")));
         }
     }//GEN-LAST:event_OnOffActionPerformed
+
+    private void radio_textKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_radio_textKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_radio_textKeyTyped
 
     public void dibujarC(int x, int y, int i) {
         Graphics draw = jPanel1.getGraphics();
