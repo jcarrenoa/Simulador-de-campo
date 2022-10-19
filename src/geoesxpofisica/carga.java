@@ -16,4 +16,5 @@ public class carga {
         this.x = x;
         this.y = y;
     }
+    
 }
