@@ -33,7 +33,7 @@ public class Programa extends javax.swing.JFrame {
             super.paintComponent(grafico);
         }
     }
-    
+
     int pospx = 0, pospy = 0;
     boolean resize = false;
     boolean rewrite = true;
@@ -47,6 +47,7 @@ public class Programa extends javax.swing.JFrame {
     int sliderX = 180;
     Timer timer = new Timer();
     boolean Sensoronoff = false;
+    Help helpv = new Help();
 
     public Programa() {
         initComponents();
@@ -217,20 +218,25 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
-        Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BaiBai-14.png"))); // NOI18N
+        Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Salir-14.png"))); // NOI18N
         Exit.setBorderPainted(false);
         Exit.setContentAreaFilled(false);
-        Exit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BaiBai-15.png"))); // NOI18N
+        Exit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Salir-15.png"))); // NOI18N
         Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExitActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Watafa-16.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Help-16.png"))); // NOI18N
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Watafa-17.png"))); // NOI18N
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Help-17.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -256,12 +262,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jPlano.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jPlano.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPlanoAncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPlanoAncestorMoved(evt);
             }
         });
 
@@ -269,12 +275,12 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(2500, 2500));
         jPanel1.setPreferredSize(new java.awt.Dimension(2500, 2500));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorMoved(evt);
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorMoved(evt);
             }
         });
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -449,11 +455,11 @@ public class Programa extends javax.swing.JFrame {
     private void jPanel1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorMoved
         if (resize == false) {
             dibujarL(2500, 2500, 0, zoom);
-            for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i);
-            }
             if (tope > 0) {
                 dibujarCampo();
+            }
+            for (int i = 0; i < tope; i++) {
+                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
             }
         }
     }//GEN-LAST:event_jPanel1AncestorMoved
@@ -471,26 +477,26 @@ public class Programa extends javax.swing.JFrame {
         @Override
         public void run() {
             dibujarL(2500, 2500, 0, zoom);
-            for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i);
-            }
             if (tope > 0) {
                 dibujarCampo();
             }
+            for (int i = 0; i < tope; i++) {
+                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
+            }
         }
     }
-    
+
     public class RepeatedTaskSensor extends TimerTask {
 
         @Override
         public void run() {
             dibujarL(2500, 2500, 0, zoom);
-            for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i);
-            }
             if (tope > 0) {
                 dibujarCampo();
                 dibujarSensor();
+            }
+            for (int i = 0; i < tope; i++) {
+                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
             }
         }
     }
@@ -560,10 +566,42 @@ public class Programa extends javax.swing.JFrame {
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
         if (rewrite) {
             double x = (evt.getX() / (float) (2500 / zoom)) - (float) or, y = -1 * ((evt.getY() / (float) (2500 / zoom)) - (float) or);
-            X_label.setText("X: " + String.valueOf(x));
-            Y_label.setText("Y: " + String.valueOf(y));
+            if (String.valueOf(x).contains("-")) {
+                if (String.valueOf(x).length() > 5) {
+                    X_label.setText("X: " + String.valueOf(x).substring(0, 5) + " m");
+                } else {
+                    X_label.setText("X: " + String.valueOf(x) + " m");
+                }
+            } else {
+                if (String.valueOf(x).length() > 4) {
+                    X_label.setText("X: " + String.valueOf(x).substring(0, 4) + " m");
+                } else {
+                    X_label.setText("X: " + String.valueOf(x) + " m");
+                }
+            }
+            if (String.valueOf(y).contains("-")) {
+                if (String.valueOf(y).length() > 5) {
+                    Y_label.setText("Y: " + String.valueOf(y).substring(0, 5) + " m");
+                } else {
+                    Y_label.setText("Y: " + String.valueOf(y) + " m");
+                }
+            } else {
+                if (String.valueOf(y).length() > 4) {
+                    Y_label.setText("Y: " + String.valueOf(y).substring(0, 4) + " m");
+                } else {
+                    Y_label.setText("Y: " + String.valueOf(y) + " m");
+                }
+            }
             double campop = campo_m(x, y);
-            campo_label.setText("Intensidad: " + String.valueOf(campop));
+            if (String.valueOf(campop).length() > 4) {
+                if (String.valueOf(campop).substring(3, 4).equals(".")) {
+                    campo_label.setText("Intensidad: " + String.valueOf(campop).substring(0, 3) + " N/C");
+                } else {
+                    campo_label.setText("Intensidad: " + String.valueOf(campop).substring(0, 4) + " N/C");
+                }
+            } else {
+                campo_label.setText("Intensidad: " + String.valueOf(campop) + " N/C");
+            }
         }
     }//GEN-LAST:event_jPanel1MouseMoved
 
@@ -694,9 +732,9 @@ public class Programa extends javax.swing.JFrame {
 
     private void OnOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnOffActionPerformed
         Sensoronoff = !Sensoronoff;
-        if (Sensoronoff){
+        if (Sensoronoff) {
             OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-13.png")));
-        }else{
+        } else {
             OnOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Botones-off12-on13-12.png")));
         }
     }//GEN-LAST:event_OnOffActionPerformed
@@ -713,11 +751,21 @@ public class Programa extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
-    public void dibujarC(int x, int y, int i) {
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        helpv.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    public void dibujarC(int x, int y, int i, boolean signo) {
         Graphics draw = jPanel1.getGraphics();
+        if (signo) {
+            draw.setColor(Color.RED);
+        } else {
+            draw.setColor(Color.BLUE);
+        }
+        draw.fillOval(((2500 / zoom) * x) - ((2500 / zoom) / 2) * radio, ((2500 / zoom) * y) - ((2500 / zoom) / 2) * radio, (2500 / zoom) * radio, (2500 / zoom) * radio);
+        draw.setColor(Color.BLACK);
         draw.drawOval(((2500 / zoom) * x) - ((2500 / zoom) / 2) * radio, ((2500 / zoom) * y) - ((2500 / zoom) / 2) * radio, (2500 / zoom) * radio, (2500 / zoom) * radio);
-        draw.setFont(new Font("Tahoma", Font.ITALIC, 20));
-        draw.setColor(Color.BLUE);
+        draw.setFont(new Font("Tahoma", Font.BOLD, 15));
         draw.drawString("Q" + String.valueOf(i), ((2500 / zoom) * x) + (2500 / zoom) / 2 * radio, ((2500 / zoom) * y) - (2500 / zoom) / 2 * radio);
     }
 
