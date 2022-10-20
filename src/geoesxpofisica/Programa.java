@@ -211,7 +211,7 @@ public class Programa extends javax.swing.JFrame {
 
         sliderOut.setForeground(new java.awt.Color(255, 255, 255));
         sliderOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sliderOut.setText("---");
+        sliderOut.setText("•••");
         sliderOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sliderOutMouseClicked(evt);
@@ -244,9 +244,9 @@ public class Programa extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(sliderOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1139, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1145, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -262,12 +262,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jPlano.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jPlano.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPlanoAncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPlanoAncestorMoved(evt);
             }
         });
 
@@ -275,12 +275,12 @@ public class Programa extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(2500, 2500));
         jPanel1.setPreferredSize(new java.awt.Dimension(2500, 2500));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorMoved(evt);
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorMoved(evt);
             }
         });
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
