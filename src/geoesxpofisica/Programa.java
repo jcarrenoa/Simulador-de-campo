@@ -12,6 +12,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -72,12 +73,15 @@ public class Programa extends javax.swing.JFrame {
 
         jPSlider = new javax.swing.JPanel();
         sliderIn = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         X_label = new javax.swing.JLabel();
         Y_label = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         campo_label = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        XC_label = new javax.swing.JLabel();
+        YC_label = new javax.swing.JLabel();
+        V_label = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         sliderOut = new javax.swing.JLabel();
@@ -131,10 +135,6 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Info del campo, carga, etc");
-
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Posicion:");
 
@@ -150,6 +150,19 @@ public class Programa extends javax.swing.JFrame {
         campo_label.setForeground(new java.awt.Color(255, 255, 255));
         campo_label.setText("Intensidad: ---");
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Carga:");
+
+        XC_label.setForeground(new java.awt.Color(255, 255, 255));
+        XC_label.setText("X: ---");
+
+        YC_label.setForeground(new java.awt.Color(255, 255, 255));
+        YC_label.setText("Y: ---");
+
+        V_label.setForeground(new java.awt.Color(255, 255, 255));
+        V_label.setText("Valor: ---");
+
         javax.swing.GroupLayout jPSliderLayout = new javax.swing.GroupLayout(jPSlider);
         jPSlider.setLayout(jPSliderLayout);
         jPSliderLayout.setHorizontalGroup(
@@ -158,18 +171,18 @@ public class Programa extends javax.swing.JFrame {
                 .addGroup(jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sliderIn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPSliderLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(12, 12, 12)
                         .addGroup(jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPSliderLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(X_label)
-                                    .addComponent(Y_label)
-                                    .addComponent(jLabel7)
-                                    .addComponent(campo_label))))))
-                .addGap(83, 83, 83))
+                            .addComponent(jLabel2)
+                            .addComponent(X_label)
+                            .addComponent(Y_label)
+                            .addComponent(jLabel7)
+                            .addComponent(campo_label)
+                            .addComponent(jLabel3)
+                            .addComponent(XC_label)
+                            .addComponent(YC_label)
+                            .addComponent(V_label))))
+                .addGap(182, 182, 182))
         );
         jPSliderLayout.setVerticalGroup(
             jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,9 +198,15 @@ public class Programa extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campo_label)
-                .addGap(126, 126, 126)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(XC_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(YC_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(V_label)
+                .addGap(421, 421, 421))
         );
 
         getContentPane().add(jPSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 705));
@@ -325,6 +344,12 @@ public class Programa extends javax.swing.JFrame {
 
         PanelControl.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Exp-06.png"))); // NOI18N
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
@@ -348,6 +373,24 @@ public class Programa extends javax.swing.JFrame {
         });
 
         signo_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Negativa", "Positiva" }));
+
+        carga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cargaKeyTyped(evt);
+            }
+        });
+
+        x_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                x_textKeyTyped(evt);
+            }
+        });
+
+        y_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                y_textKeyTyped(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Zoom-03.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -465,11 +508,19 @@ public class Programa extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1AncestorMoved
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jPanel1.repaint();
-        zoom = Integer.parseInt(jTextField1.getText());
-        jTextField1.setText("");
-        or = zoom / 2;
-        timer.schedule(new RepeatedTask(), 8);
+        if (!jTextField1.getText().equals("")) {
+            if (!jTextField1.getText().contains("-")) {
+                jPanel1.repaint();
+                zoom = Integer.parseInt(jTextField1.getText());
+                or = zoom / 2;
+                timer.schedule(new RepeatedTask(), 5);
+            } else {
+                JOptionPane.showMessageDialog(null, "No estan permitidos los valores negativos en este apartado. Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
+            }
+            jTextField1.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public class RepeatedTask extends TimerTask {
@@ -527,25 +578,41 @@ public class Programa extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int x = Integer.parseInt(x_text.getText());
-        int y = Integer.parseInt(y_text.getText());
-        double charge = Double.parseDouble(carga.getText());
-        carga q = new carga(x, -1 * y, charge, signo_box.getItemAt(signo_box.getSelectedIndex()));
-        pos[tope] = q;
-        tope++;
-        jPanel1.repaint();
+        if (!x_text.getText().equals("") && !y_text.getText().equals("") && !carga.getText().equals("") && signo_box.getSelectedIndex() != 0) {
+            if (!carga.getText().contains("-")) {
+                int x = Integer.parseInt(x_text.getText());
+                int y = Integer.parseInt(y_text.getText());
+                double charge = Double.parseDouble(carga.getText());
+                carga q = new carga(x, -1 * y, charge, signo_box.getItemAt(signo_box.getSelectedIndex()));
+                pos[tope] = q;
+                tope++;
+                jPanel1.repaint();
+                timer.schedule(new RepeatedTask(), 5);
+            } else {
+                JOptionPane.showMessageDialog(null, "El signo de la carga se le asigna en el aparado signo. Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
+        }
         x_text.setText("");
         y_text.setText("");
         signo_box.setSelectedIndex(0);
         carga.setText("");
-        timer.schedule(new RepeatedTask(), 5);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        radio = Integer.parseInt(radio_text.getText());
-        jPanel1.repaint();
-        radio_text.setText("");
-        timer.schedule(new RepeatedTask(), 5);
+        if (!radio_text.getText().equals("")) {
+            if (!radio_text.getText().contains("-")) {
+                radio = Integer.parseInt(radio_text.getText());
+                jPanel1.repaint();
+                timer.schedule(new RepeatedTask(), 5);
+            } else {
+                JOptionPane.showMessageDialog(null, "No estan permitidos los valores negativos en este apartado. Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
+            }
+            radio_text.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
@@ -565,6 +632,8 @@ public class Programa extends javax.swing.JFrame {
 
     private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
         if (rewrite) {
+            boolean hcarga = false;
+            int i = 0;
             double x = (evt.getX() / (float) (2500 / zoom)) - (float) or, y = -1 * ((evt.getY() / (float) (2500 / zoom)) - (float) or);
             if (String.valueOf(x).contains("-")) {
                 if (String.valueOf(x).length() > 5) {
@@ -596,11 +665,30 @@ public class Programa extends javax.swing.JFrame {
             if (String.valueOf(campop).length() > 4) {
                 if (String.valueOf(campop).substring(3, 4).equals(".")) {
                     campo_label.setText("Intensidad: " + String.valueOf(campop).substring(0, 3) + " N/C");
+                } else if (String.valueOf(campop).equals("Infinity")) {
+                    campo_label.setText("Intensidad: " + String.valueOf(campop));
                 } else {
                     campo_label.setText("Intensidad: " + String.valueOf(campop).substring(0, 4) + " N/C");
                 }
             } else {
                 campo_label.setText("Intensidad: " + String.valueOf(campop) + " N/C");
+            }
+            while (!hcarga && i < tope) {
+                if ((pos[i].x + (double) radio / 2) > x && (pos[i].x - (double) radio / 2) < x) {
+                    if ((-1 * pos[i].y + (double) radio / 2) > y && (-1 * pos[i].y - (double) radio / 2) < y) {
+                        hcarga = true;
+                    }
+                }
+                i++;
+            }
+            if (hcarga) {
+                XC_label.setText("X: " + String.valueOf(pos[i - 1].x) + " m");
+                YC_label.setText("Y: " + String.valueOf(-1 * pos[i - 1].y) + " m");
+                V_label.setText("Valor: " + String.valueOf(pos[i - 1].charge) + " nC");
+            } else {
+                XC_label.setText("X: ---");
+                YC_label.setText("Y: ---");
+                V_label.setText("Valor: ---");
             }
         }
     }//GEN-LAST:event_jPanel1MouseMoved
@@ -642,13 +730,15 @@ public class Programa extends javax.swing.JFrame {
         if (Sensoronoff) {
             double x = (pospx / (float) (2500 / zoom)) - (float) or, y = -1 * ((pospy / (float) (2500 / zoom)) - (float) or);
             Graphics draw = jPanel1.getGraphics();
+            Graphics2D draw2d = (Graphics2D) draw;
             double iv = 0, jv = 0;
             for (int i = 0; i < tope; i++) {
                 campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
                 iv = iv + aux.i;
                 jv = jv + aux.j;
             }
-            draw.drawLine(pospx, pospy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
+            draw2d.setStroke(new BasicStroke((float) 1.8));
+            draw2d.drawLine(pospx, pospy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
             vectorU auxv = new vectorU(iv, jv);
             double unit = Math.sqrt(Math.pow(auxv.iu, 2) + Math.pow(auxv.ju, 2));
             //dibujarFlechas(iv, jv, unit, x, y);
@@ -727,6 +817,9 @@ public class Programa extends javax.swing.JFrame {
             X_label.setText("X: ---");
             Y_label.setText("Y: ---");
             campo_label.setText("Intensidad: ---");
+            XC_label.setText("X: ---");
+            YC_label.setText("Y: ---");
+            V_label.setText("Valor: ---");
         }
     }//GEN-LAST:event_jPanel1MouseExited
 
@@ -754,6 +847,38 @@ public class Programa extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         helpv.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void x_textKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_x_textKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_x_textKeyTyped
+
+    private void y_textKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_y_textKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_y_textKeyTyped
+
+    private void cargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cargaKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_cargaKeyTyped
 
     public void dibujarC(int x, int y, int i, boolean signo) {
         Graphics draw = jPanel1.getGraphics();
@@ -790,6 +915,7 @@ public class Programa extends javax.swing.JFrame {
 
     public void dibujarCampo() {
         Graphics draw = jPanel1.getGraphics();
+        Graphics2D draw2d = (Graphics2D) draw;
         for (int i = 1; i <= zoom; i++) {
             for (int j = 1; j <= zoom; j++) {
                 double it = 0, jt = 0;
@@ -802,8 +928,9 @@ public class Programa extends javax.swing.JFrame {
                 }
                 vectorU vc = new vectorU(it, jt);
                 int posi = i * (2500 / zoom), posj = j * (2500 / zoom);
-                draw.setColor(new Color(131, 0, 234));
-                draw.drawLine(posi, posj, (int) ((vc.iu) * (2500 / zoom)) + posi, (int) ((vc.ju * (2500 / zoom)) + posj));
+                //draw2d.setStroke(new BasicStroke((float) 1.3));
+                draw2d.setColor(new Color(131, 0, 234));
+                draw2d.drawLine(posi, posj, (int) ((vc.iu) * (2500 / zoom)) + posi, (int) ((vc.ju * (2500 / zoom)) + posj));
             }
         }
     }
@@ -859,7 +986,10 @@ public class Programa extends javax.swing.JFrame {
     private javax.swing.JButton Exit;
     private javax.swing.JButton OnOff;
     private javax.swing.JPanel PanelControl;
+    private javax.swing.JLabel V_label;
+    private javax.swing.JLabel XC_label;
     private javax.swing.JLabel X_label;
+    private javax.swing.JLabel YC_label;
     private javax.swing.JLabel Y_label;
     private javax.swing.JLabel campo_label;
     private javax.swing.JTextField carga;
@@ -867,8 +997,8 @@ public class Programa extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPSlider;
     private javax.swing.JPanel jPanel1;
