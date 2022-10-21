@@ -528,7 +528,9 @@ public class Programa extends javax.swing.JFrame {
                 dibujarCampo();
             }
             for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
+                if (pos[i] != null) {
+                    dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
+                }
             }
         }
     }//GEN-LAST:event_jPanel1AncestorMoved
@@ -558,7 +560,9 @@ public class Programa extends javax.swing.JFrame {
                 dibujarCampo();
             }
             for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
+                if (pos[i] != null) {
+                    dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
+                }
             }
         }
     }
@@ -573,7 +577,9 @@ public class Programa extends javax.swing.JFrame {
                 dibujarSensor();
             }
             for (int i = 0; i < tope; i++) {
-                dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
+                if (pos[i] != null) {
+                    dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
+                }
             }
         }
     }
@@ -709,9 +715,11 @@ public class Programa extends javax.swing.JFrame {
                 campo_label.setText("Intensidad: " + String.valueOf(campop) + " N/C");
             }
             while (!hcarga && i < tope) {
-                if ((pos[i].x + (double) radio / 2) > x && (pos[i].x - (double) radio / 2) < x) {
-                    if ((-1 * pos[i].y + (double) radio / 2) > y && (-1 * pos[i].y - (double) radio / 2) < y) {
-                        hcarga = true;
+                if (pos[i] != null) {
+                    if ((pos[i].x + (double) radio / 2) > x && (pos[i].x - (double) radio / 2) < x) {
+                        if ((-1 * pos[i].y + (double) radio / 2) > y && (-1 * pos[i].y - (double) radio / 2) < y) {
+                            hcarga = true;
+                        }
                     }
                 }
                 i++;
@@ -735,11 +743,13 @@ public class Programa extends javax.swing.JFrame {
     public double campo_m(double x, double y) {
         double campop = 0;
         for (int i = 0; i < tope; i++) {
-            campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
-            if (x < pos[i].x && y < -1 * pos[i].y) {
-                campop = campop - aux.campoe;
-            } else {
-                campop = campop + aux.campoe;
+            if (pos[i] != null) {
+                campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
+                if (x < pos[i].x && y < -1 * pos[i].y) {
+                    campop = campop - aux.campoe;
+                } else {
+                    campop = campop + aux.campoe;
+                }
             }
         }
         if (campop < 0) {
@@ -925,6 +935,12 @@ public class Programa extends javax.swing.JFrame {
             timer.schedule(new RepeatedTask(), 2);
             eliminar_b.removeAllItems();
             eliminar_b.addItem(" ");
+        } else if (!eliminar_b.getItemAt(eliminar_b.getSelectedIndex()).equals(" ")) {
+            int numCarga = Integer.parseInt(eliminar_b.getItemAt(eliminar_b.getSelectedIndex()).substring(7, eliminar_b.getItemAt(eliminar_b.getSelectedIndex()).length()));
+            pos[numCarga] = null;
+            eliminar_b.removeItemAt(eliminar_b.getSelectedIndex());
+            jPanel1.repaint();
+            timer.schedule(new RepeatedTask(), 30);
         }
     }//GEN-LAST:event_eliminar_buActionPerformed
 
@@ -969,9 +985,11 @@ public class Programa extends javax.swing.JFrame {
                 double it = 0, jt = 0;
                 int z = 0;
                 while (z != tope) {
-                    campoP aux = new campoP(i * (2500 / zoom), j * (2500 / zoom), (pos[z].x + or) * (2500 / zoom), (pos[z].y + or) * (2500 / zoom), pos[z].charge, pos[z].positive, or, false);
-                    it = it + aux.i;
-                    jt = jt + aux.j;
+                    if (pos[z] != null) {
+                        campoP aux = new campoP(i * (2500 / zoom), j * (2500 / zoom), (pos[z].x + or) * (2500 / zoom), (pos[z].y + or) * (2500 / zoom), pos[z].charge, pos[z].positive, or, false);
+                        it = it + aux.i;
+                        jt = jt + aux.j;
+                    }
                     z++;
                 }
                 vectorU vc = new vectorU(it, jt);
