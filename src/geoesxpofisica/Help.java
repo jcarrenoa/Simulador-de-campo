@@ -155,7 +155,7 @@ public class Help extends javax.swing.JFrame {
         );
         unidades_pLayout.setVerticalGroup(
             unidades_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
         );
 
         ayuda_tp.addTab("Unidades de medidas", unidades_p);
@@ -200,7 +200,7 @@ public class Help extends javax.swing.JFrame {
 
         ayuda_tp.addTab("Consejos", recomendaciones_p);
 
-        contener_p.add(ayuda_tp, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 650, 630));
+        contener_p.add(ayuda_tp, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 650, 620));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

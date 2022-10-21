@@ -65,6 +65,7 @@ public class Programa extends javax.swing.JFrame {
         sph.setOrientation(JScrollBar.HORIZONTAL);
         jPlano.setHorizontalScrollBar(sph);
         this.setLocation(60, 30);
+        this.timer.schedule(new RepeatedTask(), 203);
     }
 
     @SuppressWarnings("unchecked")
@@ -82,6 +83,8 @@ public class Programa extends javax.swing.JFrame {
         XC_label = new javax.swing.JLabel();
         YC_label = new javax.swing.JLabel();
         V_label = new javax.swing.JLabel();
+        eliminar_b = new javax.swing.JComboBox<>();
+        eliminar_bu = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         sliderOut = new javax.swing.JLabel();
@@ -163,6 +166,19 @@ public class Programa extends javax.swing.JFrame {
         V_label.setForeground(new java.awt.Color(255, 255, 255));
         V_label.setText("Valor: ---");
 
+        eliminar_b.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        eliminar_bu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/del-29.png"))); // NOI18N
+        eliminar_bu.setBorderPainted(false);
+        eliminar_bu.setContentAreaFilled(false);
+        eliminar_bu.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/del-31.png"))); // NOI18N
+        eliminar_bu.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/del-30.png"))); // NOI18N
+        eliminar_bu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_buActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPSliderLayout = new javax.swing.GroupLayout(jPSlider);
         jPSlider.setLayout(jPSliderLayout);
         jPSliderLayout.setHorizontalGroup(
@@ -181,8 +197,14 @@ public class Programa extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(XC_label)
                             .addComponent(YC_label)
-                            .addComponent(V_label))))
-                .addGap(182, 182, 182))
+                            .addComponent(V_label)))
+                    .addGroup(jPSliderLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(eliminar_b, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPSliderLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(eliminar_bu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPSliderLayout.setVerticalGroup(
             jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +228,11 @@ public class Programa extends javax.swing.JFrame {
                 .addComponent(YC_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(V_label)
-                .addGap(421, 421, 421))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addComponent(eliminar_b, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(eliminar_bu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
 
         getContentPane().add(jPSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 705));
@@ -585,9 +611,18 @@ public class Programa extends javax.swing.JFrame {
                 double charge = Double.parseDouble(carga.getText());
                 carga q = new carga(x, -1 * y, charge, signo_box.getItemAt(signo_box.getSelectedIndex()));
                 pos[tope] = q;
+                if (tope == 0) {
+                    eliminar_b.addItem("Todas las cargas");
+                }
+                eliminar_b.addItem("Carga #" + String.valueOf(tope));
+                /*if (tope > 2) {
+                    eliminar_b.addItem("Carga #" + String.valueOf(tope));
+                } else {
+                    eliminar_b.addItem("Carga #" + String.valueOf(tope));
+                }*/
                 tope++;
                 jPanel1.repaint();
-                timer.schedule(new RepeatedTask(), 5);
+                timer.schedule(new RepeatedTask(), 30);
             } else {
                 JOptionPane.showMessageDialog(null, "El signo de la carga se le asigna en el aparado signo. Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
             }
@@ -880,6 +915,19 @@ public class Programa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cargaKeyTyped
 
+    private void eliminar_buActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_buActionPerformed
+        if (eliminar_b.getItemAt(eliminar_b.getSelectedIndex()).equals("Todas las cargas")) {
+            for (int i = 0; i < tope; i++) {
+                pos[i] = null;
+            }
+            tope = 0;
+            jPanel1.repaint();
+            timer.schedule(new RepeatedTask(), 2);
+            eliminar_b.removeAllItems();
+            eliminar_b.addItem(" ");
+        }
+    }//GEN-LAST:event_eliminar_buActionPerformed
+
     public void dibujarC(int x, int y, int i, boolean signo) {
         Graphics draw = jPanel1.getGraphics();
         if (signo) {
@@ -993,6 +1041,8 @@ public class Programa extends javax.swing.JFrame {
     private javax.swing.JLabel Y_label;
     private javax.swing.JLabel campo_label;
     private javax.swing.JTextField carga;
+    private javax.swing.JComboBox<String> eliminar_b;
+    private javax.swing.JButton eliminar_bu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
