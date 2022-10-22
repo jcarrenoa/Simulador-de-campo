@@ -49,6 +49,8 @@ public class Programa extends javax.swing.JFrame {
     Timer timer = new Timer();
     boolean Sensoronoff = false;
     Help helpv = new Help();
+    String vecb[] = new String[1000];
+    int topev = 0;
 
     public Programa() {
         initComponents();
@@ -617,10 +619,19 @@ public class Programa extends javax.swing.JFrame {
                 double charge = Double.parseDouble(carga.getText());
                 carga q = new carga(x, -1 * y, charge, signo_box.getItemAt(signo_box.getSelectedIndex()));
                 pos[tope] = q;
-                if (tope == 0) {
-                    eliminar_b.addItem("Todas las cargas");
+                if (sliderX == 0) {
+                    if (tope == 0) {
+                        vecb[topev] = ("Todas las cargas");
+                        topev++;
+                    }
+                    vecb[topev] = "Carga #" + String.valueOf(tope);
+                    topev++;
+                } else {
+                    if (tope == 0) {
+                        eliminar_b.addItem("Todas las cargas");
+                    }
+                    eliminar_b.addItem("Carga #" + String.valueOf(tope));
                 }
-                eliminar_b.addItem("Carga #" + String.valueOf(tope));
                 /*if (tope > 2) {
                     eliminar_b.addItem("Carga #" + String.valueOf(tope));
                 } else {
@@ -823,6 +834,7 @@ public class Programa extends javax.swing.JFrame {
 
     private void sliderOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderOutMouseClicked
         if (sliderX == 0) {
+            jPlano.repaint();
             //jPSlider.setSize(0, 700);
             resize = true;
             Thread th = new Thread() {
@@ -831,12 +843,18 @@ public class Programa extends javax.swing.JFrame {
                     try {
                         for (int i = 0; i <= 180; i++) {
                             Thread.sleep(1);
-                            jPlano.repaint();
                             jPSlider.setSize(i, 705);
                             jPlano.setLocation(i, 34);
                         }
                         jPlano.setSize(jPlano.getWidth() - 180, 580);
                         jPlano.updateUI();
+                        if (topev > 0) {
+                            for (int i = 0; i < topev; i++) {
+                                eliminar_b.addItem(vecb[i]);
+                                vecb[i] = "";
+                            }
+                            topev = 0;
+                        }
                     } catch (InterruptedException e) {
                         System.out.println(e);
                     }
