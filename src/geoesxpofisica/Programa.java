@@ -138,6 +138,7 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Posicion:");
 
@@ -147,6 +148,7 @@ public class Programa extends javax.swing.JFrame {
         Y_label.setForeground(new java.awt.Color(255, 255, 255));
         Y_label.setText("Y: ---");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Campo:");
 
@@ -154,6 +156,7 @@ public class Programa extends javax.swing.JFrame {
         campo_label.setText("Intensidad: ---");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Carga:");
 
@@ -199,12 +202,13 @@ public class Programa extends javax.swing.JFrame {
                             .addComponent(YC_label)
                             .addComponent(V_label)))
                     .addGroup(jPSliderLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(eliminar_b, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPSliderLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(eliminar_bu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eliminar_b, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPSliderLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(eliminar_bu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPSliderLayout.setVerticalGroup(
             jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,11 +232,11 @@ public class Programa extends javax.swing.JFrame {
                 .addComponent(YC_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(V_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
                 .addComponent(eliminar_b, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(eliminar_bu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(35, 35, 35))
         );
 
         getContentPane().add(jPSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 705));
