@@ -31,6 +31,7 @@ public class Help extends javax.swing.JFrame {
         RWindow = new javax.swing.JButton();
         ayuda_tp = new javax.swing.JTabbedPane();
         unidades_p = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
         botones_p = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         recomendaciones_p = new javax.swing.JPanel();
@@ -147,15 +148,19 @@ public class Help extends javax.swing.JFrame {
 
         ayuda_tp.setEnabled(false);
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/UWindow-32.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+
         javax.swing.GroupLayout unidades_pLayout = new javax.swing.GroupLayout(unidades_p);
         unidades_p.setLayout(unidades_pLayout);
         unidades_pLayout.setHorizontalGroup(
             unidades_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, Short.MAX_VALUE)
         );
         unidades_pLayout.setVerticalGroup(
             unidades_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 592, Short.MAX_VALUE)
         );
 
         ayuda_tp.addTab("Unidades de medidas", unidades_p);
@@ -191,11 +196,13 @@ public class Help extends javax.swing.JFrame {
         recomendaciones_p.setLayout(recomendaciones_pLayout);
         recomendaciones_pLayout.setHorizontalGroup(
             recomendaciones_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         recomendaciones_pLayout.setVerticalGroup(
             recomendaciones_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(recomendaciones_pLayout.createSequentialGroup()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         ayuda_tp.addTab("Consejos", recomendaciones_p);
@@ -270,6 +277,7 @@ public class Help extends javax.swing.JFrame {
     private javax.swing.JPanel desplazamiento_p;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPSlider;
     private javax.swing.JPanel recomendaciones_p;
     private javax.swing.JPanel unidades_p;

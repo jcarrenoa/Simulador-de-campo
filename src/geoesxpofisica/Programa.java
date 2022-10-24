@@ -140,6 +140,7 @@ public class Programa extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Posicion:");
 
@@ -149,6 +150,7 @@ public class Programa extends javax.swing.JFrame {
         Y_label.setForeground(new java.awt.Color(255, 255, 255));
         Y_label.setText("Y: ---");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Campo:");
 
@@ -156,6 +158,7 @@ public class Programa extends javax.swing.JFrame {
         campo_label.setText("Intensidad: ---");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Carga:");
 
@@ -201,12 +204,12 @@ public class Programa extends javax.swing.JFrame {
                             .addComponent(YC_label)
                             .addComponent(V_label)))
                     .addGroup(jPSliderLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(27, 27, 27)
                         .addComponent(eliminar_b, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPSliderLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(56, 56, 56)
                         .addComponent(eliminar_bu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPSliderLayout.setVerticalGroup(
             jPSliderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,11 +233,11 @@ public class Programa extends javax.swing.JFrame {
                 .addComponent(YC_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(V_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
                 .addComponent(eliminar_b, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(eliminar_bu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(63, 63, 63))
         );
 
         getContentPane().add(jPSlider, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 705));
@@ -534,6 +537,9 @@ public class Programa extends javax.swing.JFrame {
                     dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
                 }
             }
+            if (tope > 0) {
+                dibujarSensor();
+            }
         }
     }//GEN-LAST:event_jPanel1AncestorMoved
 
@@ -576,12 +582,14 @@ public class Programa extends javax.swing.JFrame {
             dibujarL(2500, 2500, 0, zoom);
             if (tope > 0) {
                 dibujarCampo();
-                dibujarSensor();
             }
             for (int i = 0; i < tope; i++) {
                 if (pos[i] != null) {
                     dibujarC(or + pos[i].x, or + pos[i].y, i, pos[i].positive);
                 }
+            }
+            if (tope > 0) {
+                dibujarSensor();
             }
         }
     }
@@ -640,8 +648,10 @@ public class Programa extends javax.swing.JFrame {
                 tope++;
                 jPanel1.repaint();
                 timer.schedule(new RepeatedTask(), 30);
+                pospx = 0;
+                pospy = 0;
             } else {
-                JOptionPane.showMessageDialog(null, "El signo de la carga se le asigna en el aparado signo. Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
+                JOptionPane.showMessageDialog(null, "El signo de la carga se le asigna en el apartado signo. Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Por favor ingresar un valor valido", "VALOR INVALIDO", 0);
@@ -689,28 +699,28 @@ public class Programa extends javax.swing.JFrame {
             double x = (evt.getX() / (float) (2500 / zoom)) - (float) or, y = -1 * ((evt.getY() / (float) (2500 / zoom)) - (float) or);
             if (String.valueOf(x).contains("-")) {
                 if (String.valueOf(x).length() > 5) {
-                    X_label.setText("X: " + String.valueOf(x).substring(0, 5) + " m");
+                    X_label.setText("X: " + String.valueOf(x).substring(0, 5));
                 } else {
-                    X_label.setText("X: " + String.valueOf(x) + " m");
+                    X_label.setText("X: " + String.valueOf(x));
                 }
             } else {
                 if (String.valueOf(x).length() > 4) {
-                    X_label.setText("X: " + String.valueOf(x).substring(0, 4) + " m");
+                    X_label.setText("X: " + String.valueOf(x).substring(0, 4));
                 } else {
-                    X_label.setText("X: " + String.valueOf(x) + " m");
+                    X_label.setText("X: " + String.valueOf(x));
                 }
             }
             if (String.valueOf(y).contains("-")) {
                 if (String.valueOf(y).length() > 5) {
-                    Y_label.setText("Y: " + String.valueOf(y).substring(0, 5) + " m");
+                    Y_label.setText("Y: " + String.valueOf(y).substring(0, 5));
                 } else {
-                    Y_label.setText("Y: " + String.valueOf(y) + " m");
+                    Y_label.setText("Y: " + String.valueOf(y));
                 }
             } else {
                 if (String.valueOf(y).length() > 4) {
-                    Y_label.setText("Y: " + String.valueOf(y).substring(0, 4) + " m");
+                    Y_label.setText("Y: " + String.valueOf(y).substring(0, 4));
                 } else {
-                    Y_label.setText("Y: " + String.valueOf(y) + " m");
+                    Y_label.setText("Y: " + String.valueOf(y));
                 }
             }
             double campop = campo_m(x, y);
@@ -736,8 +746,8 @@ public class Programa extends javax.swing.JFrame {
                 i++;
             }
             if (hcarga) {
-                XC_label.setText("X: " + String.valueOf(pos[i - 1].x) + " m");
-                YC_label.setText("Y: " + String.valueOf(-1 * pos[i - 1].y) + " m");
+                XC_label.setText("X: " + String.valueOf(pos[i - 1].x));
+                YC_label.setText("Y: " + String.valueOf(-1 * pos[i - 1].y));
                 V_label.setText("Valor: " + String.valueOf(pos[i - 1].charge) + " nC");
             } else {
                 XC_label.setText("X: ---");
@@ -782,25 +792,44 @@ public class Programa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPanel1MousePressed
 
-    public void dibujarSensor() { 
-        if (Sensoronoff) {
+    public void dibujarSensor() {
+        if (Sensoronoff && pospx != 0 && pospy != 0) {
             double x = (pospx / (float) (2500 / zoom)) - (float) or, y = -1 * ((pospy / (float) (2500 / zoom)) - (float) or);
+            double camp = campo_m(x, y);
             Graphics draw = jPanel1.getGraphics();
             Graphics2D draw2d = (Graphics2D) draw;
             double iv = 0, jv = 0;
             for (int i = 0; i < tope; i++) {
-                campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
-                iv = iv + aux.i;
-                jv = jv + aux.j;
+                if (pos[i] != null) {
+                    campoP aux = new campoP(x, y, pos[i].x, -1 * pos[i].y, pos[i].charge, pos[i].positive, or, false);
+                    iv = iv + aux.i;
+                    jv = jv + aux.j;
+                }
             }
             draw2d.setColor(new Color(79, 209, 97));
             draw2d.setStroke(new BasicStroke((float) 2));
             draw2d.drawLine(pospx, pospy, (int) ((iv + or + x) * (2500 / zoom)), -1 * (int) ((jv - or + y) * (2500 / zoom)));
+            draw2d.setColor(Color.darkGray);
+            draw2d.setFont(new Font("Tahoma", Font.BOLD, 13));
+            if (String.valueOf(camp).length() > 4) {
+                if (String.valueOf(camp).substring(3, 4).equals(".")) {
+                    draw2d.drawString(String.valueOf(camp).substring(0, 3) + " N/C", pospx - 10, pospy - 10);
+                } else if (String.valueOf(camp).contains(".") && String.valueOf(camp).length() > 4) {
+                    draw2d.drawString(String.valueOf(camp).substring(0, 4) + " N/C", pospx - 10, pospy - 10);
+                } else if (String.valueOf(camp).equals("Infinity")) {
+                    draw2d.drawString(String.valueOf(camp), pospx - 10, pospy - 10);
+                } else {
+                    draw2d.drawString(String.valueOf(camp) + " N/C".substring(0, 4), pospx - 10, pospy - 10);
+                }
+            } else {
+                draw2d.drawString(String.valueOf(camp) + " N/C", pospx - 10, pospy - 10);
+            }
             vectorU auxv = new vectorU(iv, jv);
             double unit = Math.sqrt(Math.pow(auxv.iu, 2) + Math.pow(auxv.ju, 2));
             //dibujarFlechas(iv, jv, unit, x, y);
         }
     }
+
 
     private void sliderInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderInMouseClicked
         if (sliderX == 180) {
@@ -1059,8 +1088,10 @@ public class Programa extends javax.swing.JFrame {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(new WindowsLookAndFeel());
+
                 } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(Programa.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Programa.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
                 new Programa().setVisible(true);
             }
