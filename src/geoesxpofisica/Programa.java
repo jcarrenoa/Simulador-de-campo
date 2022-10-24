@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -68,6 +70,12 @@ public class Programa extends javax.swing.JFrame {
         jPlano.setHorizontalScrollBar(sph);
         this.setLocation(60, 30);
         this.timer.schedule(new RepeatedTask(), 203);
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/logo-33.png"));
+        return retValue;
     }
 
     @SuppressWarnings("unchecked")
